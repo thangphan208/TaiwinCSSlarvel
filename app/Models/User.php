@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +18,9 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function posts(){
+        return $this->hasMany(Posts::class, 'user_id', 'id');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

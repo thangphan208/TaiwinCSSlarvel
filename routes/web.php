@@ -17,8 +17,18 @@ use Illuminate\Support\Facades\Route;
 //    return view('index');
 //});
 
-Route::get('/', function () {
-    return view('index');
-})->middleware(['auth'])->name('dashboard');
+//Route::get('/', function () {
+//    return view('index');
+//})->middleware(['auth'])->name('dashboard');
+
+Route::group(['middleware' => ['auth']], function () {
+        Route::get('/', 'HomeController@index')->name('homePage');
+        Route::get('/myPost', 'HomeController@myPost')->name('homePage-myPost');
+        Route::get('following', 'FollowingController@index')->name('followingPage');
+        Route::get('detail/{id}', 'UserController@show')->name('showUserDetail');
+        //update follow
+        Route::get('detail/follow/{id}', 'UserController@updateFollower')->name('updateFollow');
+        Route::get('detail/unfollow/{id}', 'UserController@unFollow')->name('unFollow');
+});
 
 require __DIR__.'/auth.php';

@@ -10,7 +10,7 @@
                                 <div class="image flex items-center mr-4">
                                     <img src="{{asset('img/avt-ronaldo.jpg')}}" alt="avater"
                                          class="w-8 h-8 rounded-full mr-2">
-                                    <div class="title uppercase">Phan Thang</div>
+                                    <div class="title uppercase">{{ Auth::user()->name }}</div>
                                 </div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
