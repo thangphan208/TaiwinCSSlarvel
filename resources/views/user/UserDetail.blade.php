@@ -1,14 +1,14 @@
 <x-app-layout>
     <div style="width: 280px;margin-right: 20px">
         <nav class="flex items-center justify-between text-xs mt-4 bg-white rounded-xl">
-            <div class="flex px-2 py-6">
+            <div class="flex px-2 py-6 w-full" >
                 <a href="">
                     <img src="{{asset('img/avt-ronaldo.jpg')}}" alt="" class="w-10 h-10 rounded-xl">
                 </a>
                 <div class="mx-4 w-4/6 justify-between">
                     <h4 class="text-xs font-semibold flex justify-between w-full">
                         <a href="" class="hover:underline">{{ Auth::user()->name }}</a>
-                        <div class="setting-icon ml-4">
+                        <div class="setting-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
                             </svg>
@@ -23,69 +23,38 @@
         <nav class="justify-between mt-4 bg-white rounded-xl">
             <ul class="flex justify-between font-semibold space-x-10 px-2 py-2">
                 <li>
-                    <p href="" class="text-gray-400">
-                        Suggest
-                    </p>
-                </li>
-                <li>
-                    <p href="" class="text-gray-400">
-                        View all
+                    <p href="" class="ml-2 text-gray-400">
+                        Information
                     </p>
                 </li>
             </ul>
 
             <div class="flex px-2 py-2">
-                <div>
-                    <a href="">
-                        <img src="{{asset('img/avt-ronaldo.jpg')}}" alt="" class="w-10 h-10 rounded-xl">
-                    </a>
-                </div>
-                <div class="mx-4 justify-between flex">
-                    <div class="text-gray-600 mt-3 mr-5">
-                        Phan Quang Thang
-                    </div>
-                    <div class="mt-3 text-green-600">
-                        Follow
-                    </div>
-                </div>
+                <ul class="font-semibold space-x-10 px-2 py-2 w-full">
+                    <li class="flex justify-between">
+                        <p href="" class="ml-2">
+                            Post
+                        </p>
+                        <p href="" class="ml-2">
+                            1
+                        </p>
+                    </li>
+                    <li style="margin: 0">
+                        <p href="" class="ml-2">
+                            Followers
+                        </p>
+                    </li>
+                    <li style="margin: 0">
+                        <p href="" class="ml-2">
+                            Following
+                        </p>
+                    </li>
+                </ul>
             </div>
 
         </nav>
     </div>
     <div style="width: 700px">
-        <nav class="flex items-center justify-between text-xs mt-4">
-            <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
-                <li>
-                    <a href="{{route('homePage')}}" class="border-b-4 pb-3
-                        {{ Request::routeIs('homePage') ? 'border-blue-500' : '' }}">
-                        All posts ({{$countPosts}})
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('homePage-myPost')}}" class="text-gray-400 transition duration-500
-                        {{ Request::routeIs('homePage-myPost') ? 'border-blue-500' : '' }}
-                        ease-in border-b-4
-                        pb-3 hover:border-blue-400">
-                        My Posts ({{$countMyPosts}})
-                    </a>
-                </li>
-
-            </ul>
-            <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
-                <li>
-                    <a href="" class="text-gray-400 transition duration-500 ease-in border-b-4
-                        pb-3 hover:border-blue-400">
-                        implemented
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="text-gray-400 transition duration-500 ease-in border-b-4
-                        pb-3 hover:border-blue-400">
-                        closed
-                    </a>
-                </li>
-            </ul>
-        </nav>
         <div class="mt-8">
             <div class="filter flex space-x-6">
                 <div class="w-1/3">
@@ -118,5 +87,4 @@
             </div>
         </div>
     {{--     end container --}}
-
 </x-app-layout>
