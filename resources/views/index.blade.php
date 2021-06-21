@@ -94,10 +94,20 @@
                     </select>
                 </div>
                 <div class="w-1/3">
-                    <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2 bg-gray-200">
-                        <option value="1">category1</option>
-                    </select>
+                    <div name="category" id="category"
+                         class="w-full rounded-xl border-none px-4 py-2 bg-gray-200 flex justify-between">
+                        <div>New Post</div>
+                        <button onclick="inserPost()">
+                            <svg style="height: 21px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="w-2/3 relative flex">
                     <input type="text" class="w-full rounded-xl border-none px-4 py-2 bg-gray-200 pl-8"
                            placeholder="Find an ideal">
@@ -108,8 +118,30 @@
                         </svg>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="form-Insert w-full h-16 bg-blue-200 mt-3 rounded-xl items-center" style="height: fit-content">
+               <div class="form w-4/5 pb-3 pt-3" style="margin: auto;">
+                   <form action="" method="post">
+                       <div class="flex justify-between mt-2">
+                           <div class="title">Title</div>
+                           <input type="text" name="title" class="h-8" style="width: 400px;">
+                       </div>
+                       <div class="flex justify-between mt-2">
+                           <div class="title">Description</div>
+                           <input type="text" name="description" class="h-8"  style="width: 400px;">
+                       </div>
+                       <div class="flex justify-between mt-2">
+                           <div class="title">Title</div>
+                           <input type="text" name="title"  class="h-8" style="width: 400px;">
+                       </div>
+                       <div class="flex justify-between mt-2">
+                           <div class="title">Title</div>
+                           <input type="text" name="title"  class="h-8" style="width: 400px;">
+                       </div>
+                   </form>
+               </div>
+            </div>
             {{--    container--}}
             <div class="ideas-container space-y-6 my-6">
                 {{--                posts--}}
@@ -117,6 +149,17 @@
                 {{--                end posts--}}
             </div>
         </div>
-    {{--     end container --}}
+        {{--     end container --}}
 
+        <script>
+            var inserPostStatus = false;
+            function inserPost() {
+                inserPostStatus = true;
+                console.log('click inser post');
+                console.log(inserPostStatus);
+                if(inserPostStatus){
+                    console.log('change status of layer insert');
+                }
+            }
+        </script>
 </x-app-layout>

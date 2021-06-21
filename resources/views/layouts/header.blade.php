@@ -14,11 +14,11 @@
                                 </div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <div class="uppercase">
-                                        <a :href="route('logout')"
-                                           onclick="event.preventDefault();
+                                     <div class="" style="cursor: pointer;">
+                                         <a :href="route('logout')"
+                                            onclick="event.preventDefault();
                                            this.closest('form').submit();">
-                                            {{ __('Logout') }}
+                                             {{ __('Logout') }}
                                         </a>
                                     </div>
                                 </form>
