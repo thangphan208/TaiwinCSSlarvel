@@ -22,13 +22,16 @@ use Illuminate\Support\Facades\Route;
 //})->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function () {
-        Route::get('/', 'HomeController@index')->name('homePage');
-        Route::get('/myPost', 'HomeController@myPost')->name('homePage-myPost');
-        Route::get('following', 'FollowingController@index')->name('followingPage');
-        Route::get('user/detail', 'user\UserDetailController@index')->name('showUserDetail');
-        //update follow
-        Route::get('detail/follow/{id}', 'UserController@updateFollower')->name('updateFollow');
-        Route::get('detail/unfollow/{id}', 'UserController@unFollow')->name('unFollow');
+    Route::get('/', 'HomeController@index')->name('homePage');
+    Route::get('/myPost', 'HomeController@myPost')->name('homePage-myPost');
+    Route::get('following', 'FollowingController@index')->name('followingPage');
+    Route::get('user/detail', 'user\UserDetailController@index')->name('showUserDetail');
+    //update follow
+    Route::get('detail/follow/{id}', 'UserController@updateFollower')->name('updateFollow');
+    Route::get('detail/unfollow/{id}', 'UserController@unFollow')->name('unFollow');
+
+    //post controller
+    Route::post('', 'PostController@store')->name('createPost');
 });
 
 require __DIR__.'/auth.php';

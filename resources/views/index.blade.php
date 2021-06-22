@@ -94,15 +94,22 @@
                     </select>
                 </div>
                 <div class="w-1/3">
-                    <div name="category" id="category"
+                    <div name="category" id="btn_insertPost"
                          class="w-full rounded-xl border-none px-4 py-2 bg-gray-200 flex justify-between">
                         <div>New Post</div>
-                        <button onclick="inserPost()">
+                        <button onclick="openForm()" id="btn_openForm">
                             <svg style="height: 21px;" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </button>
+                        <button onclick="closeForm()" class="hidden" id="btn_closeForm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </button>
                     </div>
@@ -120,27 +127,40 @@
                 </div>
 
             </div>
-            <div class="form-Insert w-full h-16 bg-blue-200 mt-3 rounded-xl items-center" style="height: fit-content">
-               <div class="form w-4/5 pb-3 pt-3" style="margin: auto;">
-                   <form action="" method="post">
-                       <div class="flex justify-between mt-2">
-                           <div class="title">Title</div>
-                           <input type="text" name="title" class="h-8" style="width: 400px;">
-                       </div>
-                       <div class="flex justify-between mt-2">
-                           <div class="title">Description</div>
-                           <input type="text" name="description" class="h-8"  style="width: 400px;">
-                       </div>
-                       <div class="flex justify-between mt-2">
-                           <div class="title">Title</div>
-                           <input type="text" name="title"  class="h-8" style="width: 400px;">
-                       </div>
-                       <div class="flex justify-between mt-2">
-                           <div class="title">Title</div>
-                           <input type="text" name="title"  class="h-8" style="width: 400px;">
-                       </div>
-                   </form>
-               </div>
+            <div class="form-Insert w-full h-16 bg-gray-200 mt-3 rounded-xl items-center " style="height: fit-content">
+                <div class="form w-5/6 pb-5 pt-5 pl-6 pr-6 hidden" style="margin: auto;" id="formInsertPost">
+                    <form method="POST" action="{{ route('createPost') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="flex justify-between mt-2">
+                            <div class="title mt-2">Title</div>
+                            <input type="text" name="title" class="h-8 rounded-xl"
+                                   style="width: 400px;"
+                                   value="{{ old('title') }}"
+                            >
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <div class="title mt-2">Description</div>
+                            <input type="text" name="description"
+                                   value="{{ old('description') }}"
+                                   class="h-8 rounded-xl" style="width: 400px;">
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <div class="title mt-2">Image</div>
+                            <input type="file" name="image" value="{{ old('image') }}" style="width: 400px;">
+                        </div>
+                        <ul class="mt-3 ml-10" id="error_insert_post">
+                            @foreach($errors ->all() as $err)
+                                <li class="text-red-700" id="mess_eror">{{$err}}</li>
+                            @endforeach
+                        </ul>
+                        <div class="flex justify-between mt-2">
+                            <button type="submit" class="bg-blue-400 p-2 rounded-lg" onclick="btn_insert">Insert
+                            </button>
+                        </div>
+                    </form>
+
+
+                </div>
             </div>
             {{--    container--}}
             <div class="ideas-container space-y-6 my-6">
@@ -152,14 +172,26 @@
         {{--     end container --}}
 
         <script>
-            var inserPostStatus = false;
-            function inserPost() {
-                inserPostStatus = true;
-                console.log('click inser post');
-                console.log(inserPostStatus);
-                if(inserPostStatus){
-                    console.log('change status of layer insert');
-                }
+            let formInsertPost = document.getElementById('formInsertPost');
+            let btn_closeForm = document.getElementById('btn_closeForm');
+            let btn_openForm = document.getElementById('btn_openForm');
+            let mess_eror = document.getElementById('mess_eror');
+
+            function openForm() {
+                formInsertPost.classList.add("block");
+                formInsertPost.classList.remove("hidden");
+                btn_openForm.classList.add("hidden");
+                btn_closeForm.classList.remove("hidden");
+                btn_closeForm.classList.add("block");
             }
+
+            function closeForm() {
+                formInsertPost.classList.add("hidden");
+                formInsertPost.classList.remove("block");
+                btn_closeForm.classList.add("hidden");
+                btn_openForm.classList.remove("hidden");
+                btn_openForm.classList.add("block");
+            }
+
         </script>
 </x-app-layout>
