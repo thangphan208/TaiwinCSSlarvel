@@ -192,6 +192,5 @@
                 btn_openForm.classList.remove("hidden");
                 btn_openForm.classList.add("block");
             }
-
         </script>
 </x-app-layout>
